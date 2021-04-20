@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: keuclide <keuclide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 13:00:02 by keuclide          #+#    #+#             */
-/*   Updated: 2021/04/20 18:17:24 by keuclide         ###   ########.fr       */
+/*   Updated: 2021/04/20 22:09:18 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -341,7 +341,7 @@ void	term_backup(int i)
 	{
 		term.c_lflag &= ~(ECHO);
 		term.c_lflag &= ~(ICANON);
-		term.c_lflag &= ~(ISIG);
+		// term.c_lflag &= ~(ISIG);
 	}
 	tcsetattr(0, TCSANOW, &term);
 }

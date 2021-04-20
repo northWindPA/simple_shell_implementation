@@ -6,7 +6,7 @@
 /*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 16:26:24 by mhumfrey          #+#    #+#             */
-/*   Updated: 2021/04/19 23:44:43 by mhumfrey         ###   ########.fr       */
+/*   Updated: 2021/04/20 22:15:12 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	cmd_crtl_c(int sg)
 	if (sg == SIGINT)
 	{
 		g_exit = 1;
-		write(1, "\b\b  \b\b", 6);
+		// write(1, "\b\b  \b\b", 6);
 		write(1, "\n", 1);
 		ft_putstr_fd(PROMT, 1);
 		signal(SIGINT, cmd_crtl_c);
@@ -36,7 +36,7 @@ void	cmd_ctrl_slash(int fr)
 {
 	if (fr == SIGQUIT)
 	{
-		write(1, "\b\b  \b\b", 6);
+		// write(1, "\b\b  \b\b", 6);
 		signal(SIGQUIT, cmd_ctrl_slash);
 	}
 }
@@ -44,7 +44,7 @@ void	cmd_ctrl_slash(int fr)
 void	disp_cmd_ctrl_slash(int fr)
 {
 	(void)fr;
-	write(1, "\b\b  \b\b", 6);
+	// write(1, "\b\b  \b\b", 6);
 	write(1, "^\\Quit: 3\n", 10);
 	g_exit = 131;
 	signal(SIGQUIT, disp_cmd_ctrl_slash);

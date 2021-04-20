@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pps_n_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: keuclide <keuclide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 15:49:29 by mhumfrey          #+#    #+#             */
-/*   Updated: 2021/04/20 17:27:23 by keuclide         ###   ########.fr       */
+/*   Updated: 2021/04/20 22:17:40 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int		flag_on(t_shell *shell, char **path, int i, int *fl)
 			free(*path);
 	free(shell->cmd_n_args[i + 1]);
 	free(shell->cmd_n_args[i]);
-	shell->cmd_n_args[i + 1] = ft_strdup("wp");
+	shell->cmd_n_args[i + 1] = ft_strdup("eshkere");
 	shell->cmd_n_args[i] = 0;
 	*fl = 1;
 	return (0);
@@ -69,6 +69,7 @@ int		fl_chk_rdr(t_shell *shell, int i)
 		if (fl_res)
 			return (0);
 	}
+	free(shell->cmd_n_args[i + 1]);
 	return (1);
 }
 

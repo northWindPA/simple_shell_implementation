@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   termfuncs.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: keuclide <keuclide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 12:58:47 by keuclide          #+#    #+#             */
-/*   Updated: 2021/04/20 17:32:21 by keuclide         ###   ########.fr       */
+/*   Updated: 2021/04/20 22:09:01 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,7 @@ void	term_func(t_shell *sh)
 		print_error("bush: malloc error", sh);
 	while (ft_strncmp(sh->buf, "\4", 1))
 	{
+		signals_start(1);
 		print_promt(sh, &i, &pos);
 		term_loop(sh, i, &pos);
 		sh->parsed_buf = ft_strdup((sh->hist)[pos]);
