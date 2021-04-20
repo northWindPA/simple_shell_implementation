@@ -83,7 +83,6 @@ typedef struct          s_shell
 }						t_shell;
 
 //Global variables
-int		g_sig;
 int		g_exit;
 
 // LOGIC
@@ -180,6 +179,7 @@ int		parse_if_dollar(t_shell *sh, char *line, int i);
 int		parse_if_double_quotes(t_shell *sh, char *line, int i);
 int		parse_if_single_quotes(t_shell *sh, char *line, int i);
 int		parse_if_all_the_rest(t_shell *sh, char *line, int i);
+void	one_two_dollars(t_shell *sh, char **str, char **oldstr, int *j);
 char	*dollar_one(t_shell *sh, char *str, char *oldstr, int j);
 char	*dollar_two(t_shell *sh, char *str, int *j);
 char	*replace_env_n_value(t_shell *sh, char *str, char *env_key, char *env_value);
@@ -188,7 +188,6 @@ void	save_str_to_structure(t_shell *sh, char *str);
 //Utils
 void	initialize(t_shell *sh);
 void	qfl(char *line, int i, t_shell *sh);
-int		ft_istoken(char c);
 int		num_of_chars(char *s, int c);
 int		remove_backslash(char *line, int i);
 int		ft_strslen(char **line);

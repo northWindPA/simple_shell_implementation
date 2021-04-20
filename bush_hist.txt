@@ -1,0 +1,208 @@
+
+
+
+l
+ls -la
+export hello
+export
+unset hello
+export hello=world
+export
+unset hello
+export hello=world
+export
+unset TERM
+export
+export hello=world
+env
+export aaa
+env
+export dasdsadsa
+env
+export
+make clean
+unset aaa
+export
+export aaa
+export
+unset aaa
+export
+unset aaa
+export
+export xxx
+export
+unset xxx
+export aaa
+env
+unset TMPDIR
+env
+unset SHELL LANG aaa
+export aaa
+unset aaa
+export aaa
+unset aaa
+export xxx
+env
+unset TMPDIR
+export zzz
+env
+unset zzz
+env
+unset TMPDIR
+env
+export aaa xxx zzz
+env
+unset PWD SHELL aaa zzz
+env
+env
+export zzz
+export
+unset zzzz
+unset zzz
+unset
+export
+env
+export hello=www
+export
+env
+export XXX=wer
+env
+unset -m
+unset XXX hello SHELL
+env
+env | grep "SHLVL"
+minishell
+env | grep "SHLVL"
+minishell
+env | grep "SHLVL"
+env | grep "SHLVL"
+env | grep "SHLVL"
+make clean
+ls -la
+touch preparser.c parser.c parser_utils.c termfuncs.c
+ls -la
+export aaa
+export
+unset aaa
+export
+echo "dsad\'dsad"
+echo "123\'"
+make clean
+1234
+123123312
+
+
+[1;3A[1;3A[1;3A[1;3A[1;3A[1;3A[1;3A[1;3A[1;3A[1;3A[1;3A[1;3A[1;3A[1;3A[1;3A[1;3A[1;3A[1;3A[1;3A[1;3A
+ππøˆ¨¥†®®®∂ƒ©˙∆˚¬…≠≠–º•¶
+ls -la
+make clean
+export
+export a=b=c=d
+export
+env
+export sss=aaaaaaaa
+export
+env
+echo a
+echo hello world > a>b>c; ls
+cat c
+rm a b c
+pwd
+
+
+
+           |
+|
+echo |             ;
+                 ;
+echo |                       ;
+echo a;          ;
+echo a
+echo a;          ;
+echo hello world > a>b>c; ls
+cat c
+rm a b c
+make clean
+echo sssss
+make clean
+rm a
+ls
+echo hello world a>b>c
+rm a b c
+make clean
+echo hello world a>b>c
+rm a b c
+echo hello world a>b>c
+rm a b c
+echo hello world a>b>c
+rm a b c
+echo hello world a>b>c
+echo hello world a>b>c
+rm a b c
+echo hello world a>b>c
+rm a b c
+echo hello world a>b>c
+rm a b c
+make clean
+echo hello > a > b > c
+cat c
+cat a
+cat b
+rm a b c
+echo hello > a > b > c
+cat a
+cat b
+cat c
+rm a b c
+make clean
+rm a b c
+echo hello > a > b > c
+rm a b c
+make clean
+\
+/
+echo hello > a > b > c
+rm a b c
+\
+echo a
+echo abc | cat -e
+echo abc | cat -e ; ls;pwd; echo hello world> xxx
+cat xxx
+rm xxx
+ls -la
+\
+asdas\dsadas
+           \
+          -
+          +
+           >
+           &
+      !
+            @
+[Z
+    
+    
+§
+
+
+∂
+
+ç
+ççççç
+√√√√√
+ºª•¶§∞§¶•ªº
+\
+echo \a
+echo \a
+\
+   \
+\   
+\
+/
+\
+\
+echo a
+echo a; echo b; ls; pwd
+echo abc > a>z; cat z; rm a z; ls -la; pwd;pwd
+make clean
+make clean

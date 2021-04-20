@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: keuclide <keuclide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 13:07:57 by mhumfrey          #+#    #+#             */
-/*   Updated: 2021/04/20 09:46:05 by mhumfrey         ###   ########.fr       */
+/*   Updated: 2021/04/20 12:45:36 by keuclide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,8 @@ void	mini_unset(t_shell *shell)
 				free(sacrifice->value);
 				free(sacrifice);
 			}
+			if (tmp->next == NULL)
+				break ;
 			tmp = tmp->next;
 		}
 	}

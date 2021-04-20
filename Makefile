@@ -2,8 +2,11 @@ NAME = minishell
 
 CC = gcc
 
-SRCS =	minishell.c \
-		main.c \
+SRCS =	main.c \
+		termfuncs.c \
+		preparser.c \
+		parser.c \
+		parser_utils.c \
 		lists_env.c \
 		exec.c \
 		pps_n_cmd.c \

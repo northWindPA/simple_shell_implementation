@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: keuclide <keuclide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 19:03:50 by mhumfrey          #+#    #+#             */
-/*   Updated: 2021/04/20 04:48:43 by mhumfrey         ###   ########.fr       */
+/*   Updated: 2021/04/20 12:55:14 by keuclide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ int		main(int argc, char **argv, char **env)
 	(void)argv;
 	if (argc != 1)
 		return (-1);
-	signal(SIGINT, ft_sigint);
-	signal(SIGQUIT, ft_sigquit);
 	ft_bzero(shell.fl_arg, 1024);
 	initialize(&shell);
 	get_env(ft_shell_lvl(env), &shell);
