@@ -6,7 +6,7 @@
 /*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 12:58:47 by keuclide          #+#    #+#             */
-/*   Updated: 2021/04/21 20:29:27 by mhumfrey         ###   ########.fr       */
+/*   Updated: 2021/04/21 22:00:06 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,11 @@ void	setup_term(t_shell *sh)
 	term.c_lflag &= ~(ISIG);
 	tcsetattr(0, TCSANOW, &term);
 	sh->kv_head = sh->kv;
-	while (sh->kv && ft_strcmp(sh->kv->key, "TERM"))
-		sh->kv = sh->kv->next;
-	tgetent(0, sh->kv->value);
+	tgetent(0, find_key_value("TERM", &sh->kv));
 }
 
-void	print_promt(t_shell *sh, int *i, int *pos)
+void	print_promt(t_shell *sh)
 {
-	*i = 1;
-	*pos = 0;
 	ft_putstr_fd(PROMT, 1);
 	tputs(save_cursor, 1, ft_putchar);
 	get_hist(sh);
@@ -172,10 +168,14 @@ void	term_func(t_shell *sh)
 		print_error("bush: malloc error", sh);
 	while (ft_strncmp(sh->buf, "\4", 1))
 	{
+		i = 1;
+		pos = 0;
 		signals_start(1);
-		print_promt(sh, &i, &pos);
+		print_promt(sh);
 		term_loop(sh, i, &pos);
 		sh->parsed_buf = ft_strdup((sh->hist)[pos]);
+		if (!ft_strncmp(sh->buf, "\4", 1))
+			ft_putendl_fd("exit", 1);
 		history_record_and_call_parser(sh, pos);
 	}
 	free(sh->buf);

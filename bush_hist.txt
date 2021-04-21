@@ -81,3 +81,64 @@ echo abc > a > b
 cat b
 echo $
 echo $
+echo abc
+exit 123 123 123 
+exit
+exit 123 123 123 
+
+exit
+exit
+exit 123 123 123 
+
+exit
+
+
+exit
+lol
+exit
+lol
+exit
+lol
+echo
+echo abc
+exit
+exit
+echo abc
+exitexit
+exitexit
+echo abcecho
+exitexitexit
+
+echo abc
+exit
+exit
+exit
+export
+unset LESS
+export
+export XXX
+export
+unset XXX
+export
+ls
+exit
+lol
+exit
+
+asdexit 123 123 
+asdexit 123
+exit 123
+exit
+asd
+exit
+
+asd
+exit
+ls
+exit
+shkere
+pwd
+exit
+exit
+exit
+echo abc

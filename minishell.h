@@ -158,7 +158,7 @@ int		ex_args(char **cmd_n_args);
 
 //Term functions and history
 void	term_func(t_shell *sh);
-void	print_promt(t_shell *sh, int *i, int *pos);
+void	print_promt(t_shell *sh);
 void	setup_term(t_shell *sh);
 int		up_and_down(t_shell *sh, int pos);
 void	backslash_and_tab(t_shell *sh, int pos, int i);
