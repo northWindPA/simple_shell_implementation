@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: keuclide <keuclide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 13:07:57 by mhumfrey          #+#    #+#             */
-/*   Updated: 2021/04/20 12:45:36 by keuclide         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:26:48 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,113 @@ void	mini_pwd(t_shell *shell)
 		free(pwd);
 }
 
+// void		ft_exit(char **cmd)
+// {
+// 	int ret;
+
+// 	ret = 0;
+// 	if (size_arr(cmd) > 2 && is_numeric_neg(cmd[1]))
+// 	{
+// 		if (is_numeric(cmd[1]))
+// 			write(1, "exit\n", 5);
+// 		write(2, PROMT_ERROR, ft_strlen(PROMT_ERROR));
+// 		write(2, cmd[0], ft_strlen(cmd[0]));
+// 		write(2, ": ", 2);
+// 		ft_putendl_fd("too many arguments", 2);
+// 		g_exit_code = 1;
+// 		return ;
+// 	}
+// 	if (cmd[1] && is_numeric_neg(cmd[1]))
+// 		ret = ft_atoi(cmd[1]);
+// 	else if (cmd[1] && !is_numeric_neg(cmd[1]))
+// 		wrong_numeric(cmd, ret);
+// 	write(1, "exit\n", 5);
+// 	if (ret < 0)
+// 		exit(ret);
+// 	ret = ret > 255 ? 255 : ret;
+// 	ft_free_split(cmd);
+// 	exit(ret);
+// }
+
+void	err_num(int rax, char **cmd_n_args)
+{
+	rax = 255;
+	write(1, "exit\n", 5);
+	write(2, PROMT, ft_strlen(PROMT));
+	write(2, ": ", 2);
+	write(2, cmd_n_args[0], ft_strlen(cmd_n_args[0]));
+	write(2, ": ", 2);
+	write(2, cmd_n_args[1], ft_strlen(cmd_n_args[1]));
+	write(2, ": ", 2);
+	write(2, "numeric argument required", 25);
+	write(2, "\n", 1);
+	exit(rax);
+}
+
+int		neg_pos_dig(char *cmd_n_args, int pos_neg)
+{
+	int i;
+
+	i = 0;
+	if (pos_neg == 1)
+	{
+		if (cmd_n_args[0] == '+')
+			i++;
+		else if (cmd_n_args[0] == '-')
+			i++;
+	}
+	while (cmd_n_args[i])
+	{
+		if (!ft_isdigit(cmd_n_args[i++]))
+			return (0);
+	}
+	return (1);
+}
+
+int		ex_args(char **cmd_n_args)
+{
+	if (len_2d(cmd_n_args) > 2)
+	{
+		if (neg_pos_dig(cmd_n_args[1], 1))
+		{
+			if (neg_pos_dig(cmd_n_args[1], 0))
+			{
+				g_exit = 1;
+				if (neg_pos_dig(cmd_n_args[1], 0))
+					write(2, "exit\n", 5);
+				write(2, PROMT, 19);
+				write(2, "exit: ", 6);
+				write(2, "too many arguments", 18);
+				write(2, "\n", 1);
+				return (1);
+			}
+		}
+	}
+	return (0);
+}
+
+void	mini_exit(char **cmd_n_args)
+{
+	int	rax;
+
+	rax = 0;
+	if (ex_args(cmd_n_args))
+		return ;
+	if (cmd_n_args[1])
+	{
+		if (neg_pos_dig(cmd_n_args[1], 1))
+			rax = ft_atoi(cmd_n_args[1]);
+		else if (!neg_pos_dig(cmd_n_args[1], 1))
+			err_num(rax, cmd_n_args);
+	}
+	write(1, "exit\n", 5);
+	if (rax < 0)
+		exit(rax);
+	if (rax > 255)
+		rax = 255;
+	free_maker(cmd_n_args);
+	exit(rax);
+}
 
 void	mini_echo(char **cmd_n_args)
 {

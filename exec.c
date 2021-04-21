@@ -6,7 +6,7 @@
 /*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 19:03:59 by mhumfrey          #+#    #+#             */
-/*   Updated: 2021/04/20 06:54:02 by mhumfrey         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:35:03 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,8 +119,8 @@ void	builtins(t_shell * shell)
 		mini_export(shell);
 	if (!ft_strcmp("unset", shell->cmd_n_args[0]))
 		mini_unset(shell);
-	// else if (!ft_strcmp("exit", shell->cmd_n_args[0]))
-	// 	ft_exit(shell->cmd_n_args);
+	if (!ft_strcmp("exit", shell->cmd_n_args[0]))
+		mini_exit(shell->cmd_n_args);
 }
 
 void 	exec(t_shell *shell)

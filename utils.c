@@ -6,7 +6,7 @@
 /*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 15:46:27 by mhumfrey          #+#    #+#             */
-/*   Updated: 2021/04/20 02:31:46 by mhumfrey         ###   ########.fr       */
+/*   Updated: 2021/04/21 18:46:38 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ int		chk_tkn(char *str, char *line)
 	if ((ft_strcmp(str, line) != 0) || (ft_strlen(str) != ft_strlen(line)))
 		return (0);
 	return (1);
+}
+
+int		len_2d(char **array)
+{
+	int i;
+
+	i = 0;
+	while(array[i])
+		i++;
+	return(i);
 }
 
 int		len_of_2d_array(t_shell *shell)

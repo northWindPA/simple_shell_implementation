@@ -10,7 +10,6 @@
 # include <sys/wait.h>
 # include <stdbool.h>
 # include <termios.h>
-
 # include "libft/libft.h"
 # include <stdlib.h>
 # include <fcntl.h>
@@ -23,7 +22,6 @@
 # define ERROR "error: \0"
 # define HISTORY "bush_hist.txt"
 
-
 typedef struct			s_kv
 {
 	void				*key;
@@ -31,50 +29,48 @@ typedef struct			s_kv
 	struct s_kv			*next;
 }						t_kv;
 
-typedef struct          s_shell
+typedef struct			s_shell
 {
-    //----------------------------
-    char                **env_args;
-    char                **cmd_n_args;
-    int                 fl_arg[1024];
-    int                 err[2];
+	//----------------------------
+	char				**env_args;
+	char				**cmd_n_args;
+	int					fl_arg[1024];
+	int					err[2];
 	int					cntr;
-    //----------------------------
-
-	int				    num_args;
-	char			    *prev_home;
-	char			    *prev_pwd;
-	char			    **prev_path;
-	char			    *input;
-	char			    *p_in;
-	char			    *p_out;
-	int				    fl_rdr_in;
-	int				    fl_rdr_out;
-	int				    fl_rdr_app;
-	int				    pp_l[2];
-	int				    pp_r[2];
-	int				    *ind_arg;
-	int				    pps;
-	int				    len_env;
-	int				    stts;
-	int				    in_fd;
-	int				    out_fd;
-	int				    rdr_i;
-
-    char                *buf;
-    char                *parsed_buf;
+	//----------------------------
+	int					num_args;
+	char				*prev_home;
+	char				*prev_pwd;
+	char				**prev_path;
+	char				*input;
+	char				*p_in;
+	char				*p_out;
+	int					fl_rdr_in;
+	int					fl_rdr_out;
+	int					fl_rdr_app;
+	int					pp_l[2];
+	int					pp_r[2];
+	int					*ind_arg;
+	int					pps;
+	int					len_env;
+	int					stts;
+	int					in_fd;
+	int					out_fd;
+	int					rdr_i;
+	char				*buf;
+	char				*parsed_buf;
 	char				**hist;
 	char				**env;
 	char				**dup_env;
 	int					env_n_l;
-    int                 sq;
-    int                 dq;
-    int                 f;
+	int					sq;
+	int					dq;
+	int					f;
 	int					ff;
 	int					cc;
-    int                 isfound;
-    int                 pips;
-    t_list              *ls_hist;
+	int					isfound;
+	int					pips;
+	t_list				*ls_hist;
 	t_list				*list;
 	t_kv				*kv;
 	t_kv				*kv_head;
@@ -149,6 +145,14 @@ void	ft_kvadd_back(t_kv **lst, t_kv *new);
 t_kv	*ft_kvlast(t_kv *lst);
 void	mini_unset(t_shell *shell);
 void	mini_unset_2(t_shell *shell, t_kv **sacrifice, t_kv **tmp, int i);
+void	err_is_dir();
+void	err_perm_deny();
+void	err_no_file_dir();
+void	err_cmd_n_found();
+void	err_num(int rax, char **cmd_n_args);
+int		neg_pos_dig(char *cmd_n_args, int pos_neg);
+void	mini_exit(char **cmd_n_args);
+int		ex_args(char **cmd_n_args);
 
 //PARSER
 
@@ -182,7 +186,8 @@ int		parse_if_all_the_rest(t_shell *sh, char *line, int i);
 void	one_two_dollars(t_shell *sh, char **str, char **oldstr, int *j);
 char	*dollar_one(t_shell *sh, char *str, char *oldstr, int j);
 char	*dollar_two(t_shell *sh, char *str, int *j);
-char	*replace_env_n_value(t_shell *sh, char *str, char *env_key, char *env_value);
+char	*replace_env_n_value
+(t_shell *sh, char *str, char *env_key, char *env_value);
 void	save_str_to_structure(t_shell *sh, char *str);
 
 //Utils
@@ -193,9 +198,10 @@ int		remove_backslash(char *line, int i);
 int		ft_strslen(char **line);
 int		skipspaces(char *s);
 void	do_exit(char *msg);
-void    print_error(const char *error_msg, t_shell *sh);
-void    print_cmd_error(const char *error_msg, t_shell *sh);
+void	print_error(const char *error_msg, t_shell *sh);
+void	print_cmd_error(const char *error_msg, t_shell *sh);
 void	errcode(t_shell *sh, int i, int errcode);
 void	free_maker(char **str);
+int		len_2d(char **array);
 
 #endif

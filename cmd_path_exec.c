@@ -6,7 +6,7 @@
 /*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 19:10:53 by mhumfrey          #+#    #+#             */
-/*   Updated: 2021/04/20 02:31:11 by mhumfrey         ###   ########.fr       */
+/*   Updated: 2021/04/21 19:25:17 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int		pps_exc(t_shell *shell)
 {
-	// while (!old_ord(shell))
-	// 	new_ord(shell);
 	init(shell);
 	num_of_rdrs(shell);
 	if (!flag_chk(shell))
@@ -81,43 +79,59 @@ int		file_dir(char *cmd)
 		fl = 1;
 		i++;
 	}
-	while (cmd[i] && cmd[i] == '/' && cmd[i] == '.')
+	while (cmd[i] == '.' && cmd[i] == '/' && cmd[i])
 		i++;
 	if (i == 1)
 		return (1);
-	if (fl == 0)
+	if (!fl)
 		return (0);
 	return (1);
 }
 
-void		err_cmd(t_shell *shell)
+void	err_is_dir()
+{
+	g_exit = 126;
+	ft_putstr_fd("is a directory", 2);
+	write(2, "\n", 1);
+}
+
+void	err_perm_deny()
+{
+	g_exit = 126;
+	ft_putstr_fd("Permission denied", 2);
+	write(2, "\n", 1);
+}
+
+void	err_no_file_dir()
+{
+	g_exit = 127;
+	ft_putstr_fd("No such file or directory", 2);
+	write(2, "\n", 1);
+}
+
+void	err_cmd_n_found()
+{
+	g_exit = 127;
+	ft_putstr_fd("command not found", 2);
+	write(2, "\n", 1);
+}
+
+void	err_cmd(t_shell *shell)
 {
 	struct stat s;
 
 	stat(shell->cmd_n_args[0], &s);
 	if (S_ISDIR(s.st_mode))
-	{
-		g_exit = 126;
-		ft_putendl_fd("is a directory", 2);
-	}
+		err_is_dir();
 	else if (S_ISREG(s.st_mode))
-	{
-		g_exit = 126;
-		ft_putendl_fd("Permission denied", 2);
-	}
+		err_perm_deny();
 	else if (file_dir(shell->cmd_n_args[0]))
-	{
-		g_exit = 127;
-		ft_putendl_fd("No such file or directory", 2);
-	}
+		err_no_file_dir();
 	else
-	{
-		g_exit = 127;
-		ft_putendl_fd("command not found", 2);
-	}
+		err_cmd_n_found();
 }
 
-void		exec_parent(t_shell *shell, int stts)
+void	exec_parent(t_shell *shell, int stts)
 {
 	if (stts == 0)
 	{

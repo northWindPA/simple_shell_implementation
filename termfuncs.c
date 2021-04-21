@@ -6,7 +6,7 @@
 /*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 12:58:47 by keuclide          #+#    #+#             */
-/*   Updated: 2021/04/20 22:09:01 by mhumfrey         ###   ########.fr       */
+/*   Updated: 2021/04/21 20:29:27 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,10 +176,7 @@ void	term_func(t_shell *sh)
 		print_promt(sh, &i, &pos);
 		term_loop(sh, i, &pos);
 		sh->parsed_buf = ft_strdup((sh->hist)[pos]);
-		if (!ft_strncmp(sh->parsed_buf, "exit", 4))
-			break ;
 		history_record_and_call_parser(sh, pos);
 	}
 	free(sh->buf);
-	do_exit("exit");
 }
