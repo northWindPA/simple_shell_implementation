@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: keuclide <keuclide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 13:07:57 by mhumfrey          #+#    #+#             */
-/*   Updated: 2021/04/21 21:03:54 by mhumfrey         ###   ########.fr       */
+/*   Updated: 2021/04/21 22:34:56 by keuclide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,15 +280,17 @@ void	mini_exit(char **cmd_n_args)
 void	mini_echo(char **cmd_n_args)
 {
 	int i;
-
 	i = 1;
+	if (!ft_strcmp(cmd_n_args[1], "-n"))
+		i = 2;
 	while(cmd_n_args[i])
 	{
 		write(1, cmd_n_args[i], ft_strlen(cmd_n_args[i]));
 		if (cmd_n_args[i + 1])
 			write(1, " ", 1);
 		i++;
-		write(1, "\n", 1);
 	}
+	if (ft_strcmp(cmd_n_args[1], "-n"))
+		write(1, "\n", 1);
 	g_exit = 0;
 }

@@ -142,3 +142,43 @@ exit
 exit
 exit
 echo abc
+exit
+echo a
+echo $
+echo $1
+echo $PWD
+echo $?
+echo "$PWD"
+echo "$PWD"
+echo $.
+echo $.
+echo $.
+echo $.
+echo $.
+echo $.
+echo $.
+echo $.
+echo $
+echo $PWD
+echo $PWD.
+echo $PWD\
+echo $PWD/
+echo $PWD"1"
+echo qweqwe $PWD dsadasdas
+echo qweqwe $PWD  ssss
+echo 1 $PWD 1
+echo 1
+echo 1 2 3
+echo
+echo '1' '2'
+echo '1' '2'
+echo hello world
+echo hello world hello world
+echo hello $_ world
+make clean
+echo 1 $PWD 1
+echo 1 $PWD 1
+echo 1 $PWD 1
+echo 1$PWD 1
+echo 1 $PWD1
+echo 1 $PWD'1'1

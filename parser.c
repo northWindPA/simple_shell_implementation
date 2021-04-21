@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
+/*   By: keuclide <keuclide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/20 13:00:02 by keuclide          #+#    #+#             */
-/*   Updated: 2021/04/21 19:41:48 by mhumfrey         ###   ########.fr       */
+/*   Updated: 2021/04/21 22:37:02 by keuclide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		join_if_arg(t_shell *sh, char *str)
 		ft_strjoin_free(sh->cmd_n_args[sh->cntr], str, 1);
 		return (1);
 	}
-	sh->ff = -1;
+	sh->ff *= -1;
 	return (0);
 }
 
@@ -87,14 +87,6 @@ char	*replace_env_n_value(
 	return (tmp1);
 }
 
-void	one_two_dollars(t_shell *sh, char **str, char **oldstr, int *j)
-{
-	if (*str[*j] == '$' && (ft_isdigit(*str[*j + 1]) || *str[*j + 1] == '?'))
-		*oldstr = dollar_one(sh, *str, *oldstr, *j);
-	else if (*str[*j] == '$' &&
-	(ft_isalnum(*str[*j + 1]) || *str[*j + 1] == '_'))
-		*str = dollar_two(sh, *str, j);
-}
 
 char	*dollar_one(t_shell *sh, char *str, char *oldstr, int j)
 {
@@ -158,7 +150,10 @@ int		parse_if_dollar(t_shell *sh, char *line, int i)
 	}
 	if (line[i] == ' ')
 		sh->ff *= -1;
-	one_two_dollars(sh, &str, &oldstr, &j);
+	if (str[j] == '$' && (ft_isdigit(str[j + 1]) || str[j + 1] == '?'))
+		oldstr = dollar_one(sh, str, oldstr, j);
+	else if (str[j] == '$' && (ft_isalnum(str[j + 1]) || str[j + 1] == '_'))
+		str = dollar_two(sh, str, &j);
 	save_str_or_oldstr(sh, str, oldstr);
 	return (--i);
 }
@@ -208,7 +203,10 @@ int		parse_if_double_quotes(t_shell *sh, char *line, int i)
 			oldstr = ft_chrjoin_free(oldstr, str[ln], 1);
 			ln++;
 		}
-		one_two_dollars(sh, &str, &oldstr, &j);
+		if (str[j] == '$' && (ft_isdigit(str[j + 1]) || str[j + 1] == '?'))
+			oldstr = dollar_one(sh, str, oldstr, j);
+		else if (str[j] == '$' && (ft_isalnum(str[j + 1]) || str[j + 1] == '_'))
+			str = dollar_two(sh, str, &j);
 		j++;
 	}
 	save_str_or_oldstr(sh, str, oldstr);
