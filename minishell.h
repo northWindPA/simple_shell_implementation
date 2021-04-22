@@ -20,7 +20,7 @@
 
 # define PROMT "\033[32mbush-0.0$ \033[0m"
 # define ERROR "error: \0"
-# define HISTORY "bush_hist.txt"
+# define HISTORY "/goinfre/bush_hist.txt"
 
 typedef struct			s_kv
 {
@@ -153,6 +153,7 @@ void	err_num(int rax, char **cmd_n_args);
 int		neg_pos_dig(char *cmd_n_args, int pos_neg);
 void	mini_exit(char **cmd_n_args);
 int		ex_args(char **cmd_n_args);
+void	err_no_dir_cd(char *dir);
 
 //PARSER
 

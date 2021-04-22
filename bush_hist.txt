@@ -182,3 +182,14 @@ echo 1 $PWD 1
 echo 1$PWD 1
 echo 1 $PWD1
 echo 1 $PWD'1'1
+ls
+env
+cd ..
+clear
+env
+cd ..
+ls
+cd ..
+env
+ls
+cd libft

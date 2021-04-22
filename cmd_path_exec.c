@@ -6,7 +6,7 @@
 /*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 19:10:53 by mhumfrey          #+#    #+#             */
-/*   Updated: 2021/04/21 19:25:17 by mhumfrey         ###   ########.fr       */
+/*   Updated: 2021/04/22 03:26:51 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,7 +144,8 @@ void	exec_parent(t_shell *shell, int stts)
 		if (WEXITSTATUS(stts) == 127)
 		{
 			g_exit = 1;
-			ft_putstr_fd(ERROR, 2);
+			ft_putstr_fd("bush", 2);
+			ft_putstr_fd(": ", 2);
 			ft_putstr_fd(shell->cmd_n_args[0], 2);
 			ft_putstr_fd(": ", 2);
 			err_cmd(shell);

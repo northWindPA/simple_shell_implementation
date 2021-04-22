@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: keuclide <keuclide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 13:07:57 by mhumfrey          #+#    #+#             */
-/*   Updated: 2021/04/21 22:34:56 by keuclide         ###   ########.fr       */
+/*   Updated: 2021/04/22 03:20:59 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,65 @@ void	no_home(t_shell *shell)
 
 int		check_path(t_shell *shell, char **home)
 {
+	shell->kv = shell->kv_head;
 	if ((*home = ft_strdup(find_key_value("HOME", &shell->kv))) == NULL)
+	{
 		no_home(shell);
-	return (0);
+		return (0);
+	}
+	return (1);
+}
+
+void	err_no_dir_cd(char *dir)
+{
+	g_exit = 127;
+
+	ft_putstr_fd("bush", 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd("cd", 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(dir, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd("No such file or directory", 2);
+	write(2, "\n", 1);
 }
 
 void	mini_cd(t_shell *shell)
 {
 	char	*home;
+	char	*tmp;
 
-	home = NULL;
-	if (!shell->cmd_n_args[1])
+	if (!check_path(shell, &home))
+		return ;
+	shell->kv = shell->kv_head;
+	while(shell->kv)
 	{
-		if (!check_path(shell, &home))
-			return ;
+		if (!ft_strcmp("PWD", shell->kv->key))
+		{
+			tmp = ft_strdup(shell->kv->value);
+			if (len_2d(shell->cmd_n_args) == 1
+			|| !ft_strcmp("~", shell->cmd_n_args[1]))
+			{
+				if ((chdir(home)) == -1)
+					err_no_dir_cd(home);
+			}
+			else
+			{
+				if ((chdir(shell->cmd_n_args[1])) == -1)
+					err_no_dir_cd(shell->cmd_n_args[1]);
+			}
+			free(shell->kv->value);
+			shell->kv->value = getcwd(NULL, 0);
+		}
+		else if (!ft_strcmp("OLDPWD", shell->kv->key))
+		{
+			free(shell->kv->value);
+			shell->kv->value = ft_strdup(tmp);
+		}
+		shell->kv = shell->kv->next;
 	}
-	// else
-	chdir(shell->cmd_n_args[1]);
+	free(tmp);
+	free(home);
 }
 
 void	display_export(t_shell *shell)

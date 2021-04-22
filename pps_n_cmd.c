@@ -6,7 +6,7 @@
 /*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/08 15:49:29 by mhumfrey          #+#    #+#             */
-/*   Updated: 2021/04/20 22:17:40 by mhumfrey         ###   ########.fr       */
+/*   Updated: 2021/04/22 03:28:01 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,8 @@ int		rdr_in(t_shell *shell, int i)
 		shell->in_fd = open(shell->p_in, O_RDONLY);
 		if (shell->in_fd < 0)
 		{
-			ft_putstr_fd(ERROR, 2);
+			ft_putstr_fd("bush", 2);
+			ft_putstr_fd(": ", 2);
 			ft_putstr_fd(shell->p_in, 2);
 			ft_putstr_fd(": ", 2);
 			ft_putendl_fd(strerror(errno), 2);
@@ -220,7 +221,8 @@ void	child(t_shell *shell, int i)
 
 void	cmd_not_found(t_shell *shell)
 {
-	ft_putstr_fd(ERROR, 2);
+	ft_putstr_fd("bush", 2);
+	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(shell->cmd_n_args[0], 2);
 	ft_putstr_fd(": ", 2);
 	ft_putendl_fd("command not found", 2);
