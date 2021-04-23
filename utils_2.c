@@ -1,30 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/07 19:03:50 by mhumfrey          #+#    #+#             */
-/*   Updated: 2021/04/23 22:37:25 by mhumfrey         ###   ########.fr       */
+/*   Created: 2021/04/23 22:50:01 by mhumfrey          #+#    #+#             */
+/*   Updated: 2021/04/23 22:50:23 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int g_exit = 0;
-
-int		main(int argc, char **argv, char **env)
+void	err_out(char *str)
 {
-	t_shell shell;
+	ft_putstr_fd(str, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putendl_fd(strerror(errno), 2);
+}
 
-	(void)argv;
-	if (argc != 1)
-		return (-1);
-	ft_bzero(shell.fl_arg, 1024);
-	initialize(&shell);
-	get_env(ft_shell_lvl(env), &shell);
-	setup_term(&shell);
-	term_func(&shell);
-	return (0);
+int		chk_tkn(char *str, char *line)
+{
+	if ((ft_strcmp(str, line) != 0) || (ft_strlen(str) != ft_strlen(line)))
+		return (0);
+	return (1);
+}
+
+int		len_2d(char **array)
+{
+	int i;
+
+	i = 0;
+	while (array[i])
+		i++;
+	return (i);
 }

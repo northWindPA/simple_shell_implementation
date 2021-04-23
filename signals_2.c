@@ -1,30 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   signals_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/04/07 19:03:50 by mhumfrey          #+#    #+#             */
-/*   Updated: 2021/04/23 22:37:25 by mhumfrey         ###   ########.fr       */
+/*   Created: 2021/04/23 22:47:56 by mhumfrey          #+#    #+#             */
+/*   Updated: 2021/04/23 22:48:44 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int g_exit = 0;
-
-int		main(int argc, char **argv, char **env)
+void	cmd_crtl_c(int sg)
 {
-	t_shell shell;
+	if (sg == SIGINT)
+	{
+		g_exit = 1;
+		write(1, "\n", 1);
+		ft_putstr_fd(PROMT, 1);
+		signal(SIGINT, cmd_crtl_c);
+	}
+}
 
-	(void)argv;
-	if (argc != 1)
-		return (-1);
-	ft_bzero(shell.fl_arg, 1024);
-	initialize(&shell);
-	get_env(ft_shell_lvl(env), &shell);
-	setup_term(&shell);
-	term_func(&shell);
-	return (0);
+void	disp_cmd_crtl_c(int sg)
+{
+	(void)sg;
+	write(1, "\n", 1);
+	g_exit = 130;
+	signal(SIGINT, disp_cmd_crtl_c);
+}
+
+void	cmd_ctrl_slash(int fr)
+{
+	if (fr == SIGQUIT)
+	{
+		signal(SIGQUIT, cmd_ctrl_slash);
+	}
 }

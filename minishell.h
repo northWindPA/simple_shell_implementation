@@ -66,7 +66,7 @@ typedef struct			s_shell
 	int					sq;
 	int					dq;
 	int					f;
-	int					ff;
+	int					ff[2];
 	int					cc;
 	int					isfound;
 	int					pips;
@@ -154,55 +154,58 @@ int		neg_pos_dig(char *cmd_n_args, int pos_neg);
 void	mini_exit(char **cmd_n_args);
 int		ex_args(char **cmd_n_args);
 void	err_no_dir_cd(char *dir);
+int		check_path(t_shell *shell, char **home);
+void	parse_env(t_shell *sh);
+char	**ft_freeall(char **arr);
 
 //PARSER
-
 //Term functions and history
-void	term_func(t_shell *sh);
-void	print_promt(t_shell *sh);
-void	setup_term(t_shell *sh);
-int		up_and_down(t_shell *sh, int pos);
-void	backslash_and_tab(t_shell *sh, int pos, int i);
-void	history_record_and_call_parser(t_shell *sh, int pos);
-void	join_buf(char **hist, char *command, t_shell *sh);
-void	get_hist(t_shell *sh);
-void	ft_sigint(int signal);
-void	ft_sigquit(int signal);
-
+void    term_func(t_shell *sh);
+void    print_promt(t_shell *sh);
+void    setup_term(t_shell *sh);
+void    term_backup(int i);
+int     up_and_down(t_shell *sh, int pos);
+void    backslash_and_tab(t_shell *sh, int pos, int i);
+void    history_record_and_call_parser(t_shell *sh, int pos);
+void    join_buf(char **hist, char *command, t_shell *sh);
+void    get_hist(t_shell *sh);
+void    ft_sigint(int signal);
+void    ft_sigquit(int signal);
 //Preparsing
-void	preparser(t_shell *sh);
-void	check_shielding(char *line, t_shell *sh);
-void	check_quotes(char *line, t_shell *sh);
-void	check_redirects(char *line, t_shell *sh);
-void	check_pipes(char *line, t_shell *sh);
-void	check_semicolons(char *line, t_shell *sh);
-
+void    preparser(t_shell *sh);
+void    check_shielding(char *line, t_shell *sh);
+void    check_quotes(char *line, t_shell *sh);
+void    check_redirects(char *line, t_shell *sh);
+void    check_pipes(char *line, t_shell *sh);
+void    check_semicolons(char *line, t_shell *sh);
 //Parsing
-void	parser(t_shell *sh);
-void	processor(t_shell *sh, char *line);
-int		parse_if_dollar(t_shell *sh, char *line, int i);
-int		parse_if_double_quotes(t_shell *sh, char *line, int i);
-int		parse_if_single_quotes(t_shell *sh, char *line, int i);
-int		parse_if_all_the_rest(t_shell *sh, char *line, int i);
-void	one_two_dollars(t_shell *sh, char **str, char **oldstr, int *j);
-char	*dollar_one(t_shell *sh, char *str, char *oldstr, int j);
-char	*dollar_two(t_shell *sh, char *str, int *j);
-char	*replace_env_n_value
-(t_shell *sh, char *str, char *env_key, char *env_value);
-void	save_str_to_structure(t_shell *sh, char *str);
-
+void    parser(t_shell *sh);
+void    processor(t_shell *sh, char *line);
+int     parse_if_dollar(t_shell *sh, char *line, int i);
+int     parse_if_double_quotes(t_shell *sh, char *line, int i);
+int     parse_if_single_quotes(t_shell *sh, char *line, int i);
+int     parse_if_all_the_rest(t_shell *sh, char *line, int i);
+void    one_two_dollars(t_shell *sh, char **str, char **oldstr, int *j);
+char    *dollar_one(t_shell *sh, char *str, char *oldstr, int j);
+char    *dollar_two(t_shell *sh, char *str, int *j);
+char    *replace_env_n_value(t_shell *sh,
+char *str, char *env_key, char *env_value);
+void    save_str_to_structure(t_shell *sh, char *str);
+void    save_str_or_oldstr(t_shell *sh, char *str, char *oldstr);
+void    switch_space(t_shell *sh, int one, int two);
+void    history_record_and_call_parser(t_shell *sh, int pos);
 //Utils
-void	initialize(t_shell *sh);
-void	qfl(char *line, int i, t_shell *sh);
-int		num_of_chars(char *s, int c);
-int		remove_backslash(char *line, int i);
-int		ft_strslen(char **line);
-int		skipspaces(char *s);
-void	do_exit(char *msg);
-void	print_error(const char *error_msg, t_shell *sh);
-void	print_cmd_error(const char *error_msg, t_shell *sh);
-void	errcode(t_shell *sh, int i, int errcode);
-void	free_maker(char **str);
-int		len_2d(char **array);
+void    initialize(t_shell *sh);
+void    qfl(char *line, int i, t_shell *sh);
+int     num_of_chars(char *s, int c);
+int     remove_backslash(char *line, int i);
+int     ft_strslen(char **line);
+int     skipspaces(char *s);
+void    do_exit(char *msg);
+void    print_error(const char *error_msg, t_shell *sh);
+void    print_cmd_error(const char *error_msg, t_shell *sh);
+void    errcode(t_shell *sh, int i, int errcode);
+void    free_maker(char **str);
+int     len_2d(char **array);
 
 #endif

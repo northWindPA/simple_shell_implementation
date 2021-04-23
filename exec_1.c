@@ -1,87 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exec.c                                             :+:      :+:    :+:   */
+/*   exec_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: keuclide <keuclide@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/07 19:03:59 by mhumfrey          #+#    #+#             */
-/*   Updated: 2021/04/21 22:34:09 by keuclide         ###   ########.fr       */
+/*   Updated: 2021/04/23 22:26:57 by mhumfrey         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	manage_order(t_shell *shell, int i)
-{
-	int		j;
-	char	*tmp;
-
-	j = 0;
-	while (shell->cmd_n_args[j])
-	{
-		if (chk_tkn(">", shell->cmd_n_args[j]))
-			break;
-		j++;
-	}
-	tmp = shell->cmd_n_args[i];
-	while (i > j)
-	{
-		shell->cmd_n_args[i] = shell->cmd_n_args[i - 1];
-		i--;
-	}
-	shell->cmd_n_args[i] = tmp;
-	shell->fl_arg[j] = 0;
-	shell->fl_arg[j + 1] = 1;
-}
-
-int 	new_ord(t_shell *shell)
-{
-	int i;
-
-	i = 0;
-	while (i < shell->num_args)
-	{
-		if (chk_tkn(">", shell->cmd_n_args[i]) && shell->cmd_n_args[i + 2])
-		{
-			if (!chk_tkn(">", shell->cmd_n_args[i + 2]) &&
-			!chk_tkn(">>", shell->cmd_n_args[i + 2]) &&
-			!chk_tkn("<", shell->cmd_n_args[i + 2]) &&
-			!chk_tkn("|", shell->cmd_n_args[i + 2]))
-				manage_order(shell, i + 2);
-			i++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int 	old_ord(t_shell *shell)
-{
-	int i;
-
-	i = 0;
-	while (i < shell->num_args)
-	{
-		if (((chk_tkn(">", shell->cmd_n_args[i]) && shell->fl_arg[i])
-		|| (chk_tkn(">>", shell->cmd_n_args[i]) && shell->fl_arg[i]))
-		&& (i + 2 < shell->num_args))
-		{
-			if (((!chk_tkn(">", shell->cmd_n_args[i + 2])
-			&& !shell->fl_arg[i + 2]) &&
-			(!chk_tkn(">>", shell->cmd_n_args[i + 2])
-			&& !shell->fl_arg[i + 2]) &&
-			(!chk_tkn("<", shell->cmd_n_args[i + 2])
-			&& !shell->fl_arg[i + 2]) &&
-			(!chk_tkn("|", shell->cmd_n_args[i + 2])
-			&& !shell->fl_arg[i + 2])) && !shell->cmd_n_args[i + 2])
-				return (1);
-			return (0);
-		}
-		i++;
-	}
-	return ((i == shell->num_args - 1) ? 0 : 1);
-}
 
 int		tokens(t_shell *shell)
 {
@@ -92,10 +21,10 @@ int		tokens(t_shell *shell)
 	{
 		if (shell->fl_arg[i] &&
 		ft_strlen(shell->cmd_n_args[i]) &&
-		(!ft_strcmp(">",shell->cmd_n_args[i])
-		|| !ft_strcmp("<",shell->cmd_n_args[i])
-		|| !ft_strcmp("|",shell->cmd_n_args[i])
-		|| !ft_strcmp(">>",shell->cmd_n_args[i])))
+		(!ft_strcmp(">", shell->cmd_n_args[i])
+		|| !ft_strcmp("<", shell->cmd_n_args[i])
+		|| !ft_strcmp("|", shell->cmd_n_args[i])
+		|| !ft_strcmp(">>", shell->cmd_n_args[i])))
 		{
 			pps_exc(shell);
 			return (1);
@@ -105,7 +34,7 @@ int		tokens(t_shell *shell)
 	return (0);
 }
 
-void	builtins(t_shell * shell)
+void	builtins(t_shell *shell)
 {
 	if (!ft_strcmp("cd", shell->cmd_n_args[0]))
 		mini_cd(shell);
@@ -123,7 +52,7 @@ void	builtins(t_shell * shell)
 		mini_exit(shell->cmd_n_args);
 }
 
-void 	exec(t_shell *shell)
+void	exec(t_shell *shell)
 {
 	if (shell->cc++ == 0)
 		write(1, "\n", 1);

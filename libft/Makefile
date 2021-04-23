@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: keuclide <keuclide@student.42.fr>          +#+  +:+       +#+         #
+#    By: mhumfrey <mhumfrey@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/10/29 14:04:37 by keuclide          #+#    #+#              #
-#    Updated: 2021/04/10 22:09:28 by keuclide         ###   ########.fr        #
+#    Updated: 2021/04/23 23:38:04 by mhumfrey         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,7 +32,6 @@ SRCS = ft_isalpha.c \
 	   ft_strlcpy.c \
 	   ft_strrchr.c \
 	   ft_bzero.c \
-	   ft_bfzero.c \
 	   ft_isprint.c \
 	   ft_memmove.c \
 	   ft_splitset.c \
@@ -70,7 +69,7 @@ BONUS_SRCS = ft_lstnew.c \
 			 ft_lstmap.c \
 			 get_next_line.c \
 			 get_next_line_utils.c \
-			 
+
 OBJS = $(SRCS:.c=.o)
 
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
