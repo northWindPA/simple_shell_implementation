@@ -6,7 +6,7 @@
 /*   By: keuclide <keuclide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 22:46:18 by keuclide          #+#    #+#             */
-/*   Updated: 2021/04/23 22:46:25 by keuclide         ###   ########.fr       */
+/*   Updated: 2021/04/27 21:08:48 by keuclide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	initialize(t_shell *sh)
 	sh->f = 0;
 	sh->ff[0] = -1;
 	sh->ff[1] = -1;
+	sh->ff[2] = 0;
 	sh->cc = 0;
 	sh->cntr = -1;
 	sh->pips = 0;

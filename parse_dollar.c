@@ -6,7 +6,7 @@
 /*   By: keuclide <keuclide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 22:41:00 by keuclide          #+#    #+#             */
-/*   Updated: 2021/04/23 22:42:09 by keuclide         ###   ########.fr       */
+/*   Updated: 2021/04/27 21:09:04 by keuclide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int		parse_if_dollar(t_shell *sh, char *line, int i)
 		i++;
 	}
 	if (line[i] == ' ')
-		switch_space(sh, 1, 0);
+		switch_space(sh, 1, 0, 0);
 	if (str[j] == '$' && (ft_isdigit(str[j + 1]) || str[j + 1] == '?'))
 		oldstr = dollar_one(sh, str, oldstr, j);
 	else if (str[j] == '$' && (ft_isalnum(str[j + 1]) || str[j + 1] == '_'))

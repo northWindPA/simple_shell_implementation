@@ -66,7 +66,7 @@ typedef struct			s_shell
 	int					sq;
 	int					dq;
 	int					f;
-	int					ff[2];
+	int					ff[3];
 	int					cc;
 	int					isfound;
 	int					pips;
@@ -192,7 +192,7 @@ char    *replace_env_n_value(t_shell *sh,
 char *str, char *env_key, char *env_value);
 void    save_str_to_structure(t_shell *sh, char *str);
 void    save_str_or_oldstr(t_shell *sh, char *str, char *oldstr);
-void    switch_space(t_shell *sh, int one, int two);
+void    switch_space(t_shell *sh, int one, int two, int three);
 void    history_record_and_call_parser(t_shell *sh, int pos);
 //Utils
 void    initialize(t_shell *sh);

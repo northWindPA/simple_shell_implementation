@@ -6,7 +6,7 @@
 /*   By: keuclide <keuclide@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/23 22:39:34 by keuclide          #+#    #+#             */
-/*   Updated: 2021/04/23 22:40:18 by keuclide         ###   ########.fr       */
+/*   Updated: 2021/04/27 21:10:08 by keuclide         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int		parse_if_all_the_rest(t_shell *sh, char *line, int i)
 		i++;
 	}
 	if (line[i] == ' ')
-		switch_space(sh, 1, 0);
+		switch_space(sh, 1, 0, 0);
 	if (!break_chr(line[i]))
 		save_str_to_structure(sh, str);
 	str = save_redirects(sh, line, str, &i);
