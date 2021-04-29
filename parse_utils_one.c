@@ -24,8 +24,9 @@ int		join_if_arg(t_shell *sh, char *str)
 	sh->fl_arg[sh->cntr] = 0;
 	if (sh->ff[0] == -1 && sh->cntr > 1 && sh->fl_arg[sh->cntr - 1] == 0)
 	{
-		sh->cmd_n_args[sh->cntr - 1] =
-		ft_strjoin_free(sh->cmd_n_args[sh->cntr - 1], str, 1);
+		sh->cntr--;
+		sh->cmd_n_args[sh->cntr] =
+		ft_strjoin_free(sh->cmd_n_args[sh->cntr], str, 1);
 		return (1);
 	}
 	switch_space(sh, -1, -1, 0);
