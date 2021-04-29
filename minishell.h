@@ -169,8 +169,8 @@ void    backslash_and_tab(t_shell *sh, int pos, int i);
 void    history_record_and_call_parser(t_shell *sh, int pos);
 void    join_buf(char **hist, char *command, t_shell *sh);
 void    get_hist(t_shell *sh);
-void    ft_sigint(int signal);
-void    ft_sigquit(int signal);
+int		break_chr(char c);
+
 //Preparsing
 void    preparser(t_shell *sh);
 void    check_shielding(char *line, t_shell *sh);
